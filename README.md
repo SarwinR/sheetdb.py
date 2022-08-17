@@ -3,7 +3,7 @@ sheetdb.py is a python package that make it easier for developer to use [Google 
 
 ⚠️**Note that this project is still under development! Expect breaking changes.**
 
-## Limitation of Google Sheets
+## Limitations of Google Sheets
 ### [Read Requests	](https://developers.google.com/sheets/api/limits)
 | Description | Quotas |
 | :---         |     :---:      |
@@ -28,13 +28,13 @@ Google sheets has a limit of ten million cells.
 
 ## To Do List v1
 ### Table
-- [x] Ability to create tables
+- [x] ~~Ability to create tables~~
 - [ ] Ability to alter tables
 - [ ] Ability to delete tables
 - [ ] Ability to select tables
 
 ### Data
-- [x] Ability to insert data into tables
+- [x] ~~Ability to insert data into tables~~
 - [ ] Ability to modify data
 - [ ] Ability to delete data from table
 - [ ] Ability to query data from table
