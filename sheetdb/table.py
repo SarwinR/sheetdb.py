@@ -29,8 +29,9 @@ class table():
     def _get(self, position):
         return self.worksheet_object.get(position).first()
 
-    def _set_row(self):
-        pass
+    def _set_row(self, position, values):
+        pos = position + ':' + helper.return_alpha_index(len(values) - 1) + position[len(position)-((len(position)-1)):]
+        self.worksheet_object.update(pos, [values])
 
     def insert(self, values):
         if len(values) != len(self.columns):
@@ -40,8 +41,7 @@ class table():
             if str(type(value)).split("'")[1] != self.columns[values.index(value)][1]:
                 raise Exception('Invalid datatype')
 
-        for value in values:
-            self._set(helper.return_alpha_index(values.index(value)) + str(3 + self.pointer), value)
+        self._set_row('A' + str(3 + self.pointer), values)
 
         self.pointer += 1
         self._update_metadata(helper.increment_metadata_pointer(self.metadata))

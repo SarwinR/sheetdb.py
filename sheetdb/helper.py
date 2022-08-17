@@ -1,5 +1,4 @@
 def return_alpha_index(index):
-    #need to add error handling for invalid index
     return chr(65 + index)
 
 def return_table_creation_metadata(columns):
@@ -17,8 +16,6 @@ def return_columns(metadata):
     columns = []
     for column in metadata.split('~'):
         columns.append(column.split(':')[::-1])
-
-    print(columns[:-1])
     return columns[:-1]
 
 def return_pointer(metadata):
