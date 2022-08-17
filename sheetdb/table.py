@@ -5,8 +5,13 @@ class table():
     columns = []
     pointer = 0
 
-    def __init__(self, worksheet_object):
+    def __init__(self, worksheet_object, metadata_exists=False):
         self.worksheet_object = worksheet_object
+
+        if(metadata_exists):
+            self.metadata = self._get('A1')
+            self.columns = helper.return_columns(self.metadata)
+            self.pointer = helper.return_pointer(self.metadata)
 
     def _update_columns(self, columns):
         self.columns = columns
@@ -24,6 +29,8 @@ class table():
     def _get(self, position):
         return self.worksheet_object.get(position).first()
 
+    def _set_row(self):
+        pass
 
     def insert(self, values):
         if len(values) != len(self.columns):

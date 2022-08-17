@@ -1,3 +1,4 @@
+from msilib import Table
 import gspread
 import sheetdb.table as table
 import sheetdb.helper as helper
@@ -27,12 +28,12 @@ class sheetdb():
             tb._set(helper.return_alpha_index(index) + '2', column[1]+':'+column[0])
             index += 1
 
-        tb._update_metadata(helper.return_table_creation_metadata(column_names))
+        tb._update_metadata(helper.return_table_creation_metadata(columns))
         tb._update_columns(columns)
         return tb
 
     def get_table(self, name):
-        return table.table(self.sh.worksheet(name))
+        return table.table(self.sh.worksheet(name), True)
 
     def delete_table(self, name):
         worksheet_object = self.sh.worksheet(name)
