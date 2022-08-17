@@ -10,16 +10,24 @@ class sheetdb():
         self.sh = self.gc.open_by_key(key)
 
     def create_table(self, name, columns):
-        tb = table.table(self.sh.add_worksheet(name, 0, 0))
-        index = 0
-        
+        column_names = []
         for column in columns:
             if column[1] not in self.datatypes:
                 raise Exception('Invalid datatype')
+            
+            if column[0] in column_names:
+                raise Exception('Duplicate column name')
 
-            tb.set(helper.return_alpha_index(index) + '1', column[1]+':'+column[0])
+            column_names.append(column[0])
+        
+        tb = table.table(self.sh.add_worksheet(name, 0, 0))
+        
+        index = 0
+        for column in columns:
+            tb.set(helper.return_alpha_index(index) + '2', column[1]+':'+column[0])
             index += 1
 
+        tb.set('A1', helper.return_metadata(column_names))
         return tb
 
     def get_table(self, name):
