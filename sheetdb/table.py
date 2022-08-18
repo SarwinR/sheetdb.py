@@ -48,4 +48,15 @@ class table():
     
     def bulk_insert(self, valuesArray):
         pass
+
+
+    def get_all(self):
+        raw_values = self.worksheet_object.get_all_values()
+        data = {
+            'metadata': raw_values[0][0],
+            'columns': raw_values[1],
+            'rows': raw_values[2:]
+        }
+        return data
+
         

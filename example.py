@@ -11,7 +11,8 @@ key = os.getenv('KEY')
 db = sheetdb.sheetdb(token_path, key)
 
 tb = db.get_table('test')
+print(tb.get_all())
 #tb = db.create_table('test', [['interger','int'], ['decimal', 'float'], ['string', 'str']])
 
-for i in range(0,10):
-    tb.insert([999, 1.0, '999'])
+#for i in range(0,10):
+#    tb.insert([999, 1.0, '999'])
