@@ -71,9 +71,16 @@ class table():
             for value in row:
                 columns[row.index(value)].append(value)
 
+        column_types = []
+        column_names = []
+        for value in raw_values[1]:
+            column_types.append(value.split(':')[0])
+            column_names.append(value.split(':')[1])
+
         data = {
             'metadata': raw_values[0][0],
-            'column_names': raw_values[1],
+            'column_names': column_names,
+            'column_types': column_types,
             'rows': raw_values[2:],
             'columns': columns
         }
