@@ -5,6 +5,8 @@ class table():
     columns = []
     pointer = 0
 
+    operations = ['=', '>', '<', '>=', '<=', '!=']
+
     def __init__(self, worksheet_object, metadata_exists=False):
         self.worksheet_object = worksheet_object
 
@@ -46,16 +48,34 @@ class table():
         self.pointer += 1
         self._update_metadata(helper.increment_metadata_pointer(self.metadata))
     
-    def bulk_insert(self, valuesArray):
-        pass
 
 
-    def get_all(self):
+    def get(self, conditions=[]):
+        if(conditions == []):
+            return self._get_all()
+        else:
+            # check if parameters are valid !!!
+            return self._get_condition(conditions)
+
+    def _get_condition(self, conditions): 
+        data = self.get_all()
+        return data
+
+    def _get_all(self):
         raw_values = self.worksheet_object.get_all_values()
+        columns = []
+        for i in range(len(raw_values[1])):
+            columns.append([])
+
+        for row in raw_values[2:]:
+            for value in row:
+                columns[row.index(value)].append(value)
+
         data = {
             'metadata': raw_values[0][0],
-            'columns': raw_values[1],
-            'rows': raw_values[2:]
+            'column_names': raw_values[1],
+            'rows': raw_values[2:],
+            'columns': columns
         }
         return data
 
