@@ -1,4 +1,4 @@
-# sheetdb.py
+# sheetdb.py v0.15
 sheetdb.py is a python package that make it easier for developer to use [Google Sheet](https://www.google.com/sheets/about/) as a database. Google Sheet has some limitations but even with these limitation, it can be a great database for prototyping.
 
 ⚠️ **Note that this project is still under development! Expect breaking changes.**
